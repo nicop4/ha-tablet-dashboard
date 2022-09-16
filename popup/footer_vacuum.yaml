@@ -45,14 +45,14 @@ browser_mod:
               "map"
       cards:
 
-        ### ÖVERSIKT
+        ### APERÇU
 
         - type: vertical-stack
           view_layout:
             grid-area: info
           cards:
           - type: entities
-            title: Översikt
+            title: Aperçu
             card_mod:
               class: header
               style: |
@@ -175,10 +175,10 @@ browser_mod:
                       params: [16821,23105]
                   template: icon_only
 
-        ### KARTLÄGGNING
+        ### Carte
 
         - type: custom:xiaomi-vacuum-map-card
-          title: Kartläggning
+          title: Carte
           view_layout:
             grid-area: map
           card_mod:

@@ -66,15 +66,15 @@ browser_mod:
             type: horizontal-stack
             cards:
               - type: custom:button-card
-                name: Spela upp ljud på iPhone XR
+                name: Lire de l'audio sur iPhone XR
                 icon: mdi:volume-high
                 template: icon_name
                 tap_action:
                   action: call-service
                   service: notify.mobile_app_sanja_iphone
                   service_data:
-                    title: Hitta min iPhone
-                    message: Här är jag
+                    title: Find my iPhone
+                    message: Je suis ici
                     data:
                       push:
                         sound:
@@ -108,7 +108,7 @@ browser_mod:
               entities:
 
                 - entity: sensor.hp_deskjet_2600_series_black_ink
-                  name: Svart
+                  name: Noir
                   icon: mdi:water-outline
                   tap_action:
                     action: call-service
@@ -117,7 +117,7 @@ browser_mod:
                       entity_id: sensor.hp_deskjet_2600_series_black_ink
 
                 - entity: sensor.hp_deskjet_2600_series_tri_color_ink
-                  name: Färg
+                  name: Couleur
                   icon: mdi:water
                   tap_action:
                     action: call-service

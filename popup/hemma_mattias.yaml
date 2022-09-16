@@ -67,15 +67,15 @@ browser_mod:
             type: horizontal-stack
             cards:
               - type: custom:button-card
-                name: Spela upp ljud på iPhone X
+                name: Lecture audio sur iPhone X
                 icon: mdi:volume-high
                 template: icon_name
                 tap_action:
                   action: call-service
                   service: notify.mobile_app_iphone
                   service_data:
-                    title: Hitta min iPhone
-                    message: Här är jag
+                    title: Find my iPhone
+                    message: Je suis ici
                     data:
                       push:
                         sound:

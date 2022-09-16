@@ -2,7 +2,7 @@ action: fire-dom-event
 browser_mod:
   service: browser_mod.popup
   data:
-    title: Platta
+    title: Tablette
     content:
       type: vertical-stack
       cards:
@@ -17,7 +17,7 @@ browser_mod:
 
             - type: custom:slider-entity-row
               entity: number.galaxy_tab_a_screen_brightness
-              name: Ljusstyrka
+              name: Luminosité
               icon: mdi:brightness-6
               hide_state: false
               card_mod:
@@ -102,7 +102,7 @@ browser_mod:
             type: horizontal-stack
             cards:
               - type: custom:button-card
-                name: Startsidan
+                name: Page d'accueil
                 icon: mdi:reload
                 tap_action:
                   action: call-service
@@ -111,14 +111,14 @@ browser_mod:
                     sequence:
                       - service: browser_mod.notification
                         data:
-                          message: Laddar om startsidan...
+                          message: Rechargement de la page d'accueil...
                       - service: button.press
                         data:
                           entity_id: button.galaxy_tab_a_load_start_url
                 template: icon_name
 
               - type: custom:button-card
-                name: Hela appen
+                name: L'intégralité de l'application
                 icon: mdi:reload
                 tap_action:
                   action: call-service
@@ -127,7 +127,7 @@ browser_mod:
                     sequence:
                       - service: browser_mod.notification
                         data:
-                          message: Startar om Fully Kiosk Browser...
+                          message: Redémarre entièrement le navigateur Kiosque...
                       - service: button.press
                         data:
                           entity_id: button.galaxy_tab_a_restart_browser

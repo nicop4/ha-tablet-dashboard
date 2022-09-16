@@ -70,7 +70,7 @@ browser_mod:
                 height: 1
           series:
             - entity: sensor.date
-              name: Förbrukning
+              name: Consommation
               unit: kWh
               type: column
               color: rgba(228,224,17,1)

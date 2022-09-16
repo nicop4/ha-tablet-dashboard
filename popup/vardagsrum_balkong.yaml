@@ -2,7 +2,7 @@ action: fire-dom-event
 browser_mod:
   service: browser_mod.popup
   data:
-    title: Balkong
+    title: Balcon
     content:
       type: vertical-stack
       cards:

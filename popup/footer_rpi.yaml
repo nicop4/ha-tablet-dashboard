@@ -27,7 +27,7 @@ browser_mod:
 
             - entity: binary_sensor.rpi_ping
               secondary_info: last-changed
-              name: Anslutning
+              name: Lien
               icon: mdi:raspberry-pi
 
             - type: custom:bar-card
@@ -91,7 +91,7 @@ browser_mod:
                   name: Docker RAM
 
             - entity: sensor.rpi_docker_containers_total
-              name: Antal containrar
+              name: Nombre de conteneurs
 
             - entity: switch.rpi_docker_mi_scale
             - entity: switch.rpi_docker_switchbot_mqtt
@@ -119,12 +119,12 @@ browser_mod:
                     sequence:
                       - service: browser_mod.notification
                         data:
-                          message: Släcker LED-lampor...
+                          message: Éteint les lumières LED...
                       - service: shell_command.rpi_led_off
                 template: icon_name
 
               - type: custom:button-card
-                name: Starta om
+                name: Redémarrer
                 icon: mdi:restart
                 confirmation:
                   text: Är du säker på att du vill starta om RPi?
@@ -135,15 +135,15 @@ browser_mod:
                     sequence:
                       - service: browser_mod.notification
                         data:
-                          message: Startar om RPi...
+                          message: Redémarrage du RPi...
                       - service: shell_command.rpi_reboot
                 template: icon_name
 
               - type: custom:button-card
-                name: Stäng av...
+                name: Éteindre...
                 icon: mdi:alert
                 confirmation:
-                  text: Är du säker på att du vill stänga av RPi?
+                  text: Voulez-vous vraiment désactiver le RPi ?
                 tap_action:
                   action: call-service
                   service: browser_mod.sequence
@@ -151,6 +151,6 @@ browser_mod:
                     sequence:
                       - service: browser_mod.notification
                         data:
-                          message: Stänger av RPi...
+                          message: Arrêt du RPi...
                       - service: shell_command.rpi_poweroff
                 template: icon_name

@@ -12,8 +12,8 @@ views:
       grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
       grid-template-areas: |
         "sidebar  .           .       .       ."
-        "sidebar  vardagsrum  studio  sovrum  ."
-        "sidebar  media       övrigt  hemma   ."
+        "sidebar  salon       studio  chambre ."
+        "sidebar  media       autre  hemma    ."
         "sidebar  footer      footer  footer  ."
       mediaquery:
         #phone
@@ -24,8 +24,8 @@ views:
           grid-template-areas: |
             ".  .           .        ."
             ".  sidebar     sidebar  ."
-            ".  vardagsrum  sovrum   ."
-            ".  studio      övrigt   ."
+            ".  salon       chambre  ."
+            ".  studio      autre    ."
             ".  media       hemma    ."
             ".  footer      footer   ."
             ".  .           .        ."
@@ -36,8 +36,8 @@ views:
           grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
           grid-template-areas: |
             "sidebar  .           .       ."
-            "sidebar  vardagsrum  sovrum  ."
-            "sidebar  studio      övrigt  ."
+            "sidebar  salon       chambre ."
+            "sidebar  studio      autre   ."
             "sidebar  media       hemma   ."
             "sidebar  footer      footer  ."
             "sidebar  .           .       ."
@@ -100,27 +100,27 @@ views:
 
       #################################################
       #                                               #
-      #                  VARDAGSRUM                   #
+      #                  salon                   #
       #                                               #
       #################################################
 
       - type: grid
-        title: Vardagsrum
+        title: salon
         view_layout:
-          grid-area: vardagsrum
+          grid-area: salon
         columns: 2
         cards:
 
           - type: custom:button-card
-            entity: light.vardagsrum_group
-            name: Belysning
+            entity: light.salon_group
+            name: Éclairage
             template:
               - light
               - icon_hue
 
           - type: custom:button-card
-            entity: light.vardagsrum_horna
-            name: Hörnlampa
+            entity: light.salon_horna
+            name: Lampe d'angle
             template:
               - light
               - icon_shade
@@ -131,14 +131,14 @@ views:
             state_display: >
               [[[
                 if (variables.state === 'playing') {
-                    return 'På';
+                    return 'Lecture';
                 }
                 if (variables.state === true) {
                     return variables.translate_unknown;
                 }
               ]]]
             double_tap_action:
-              !include popup/vardagsrum_tv.yaml
+              !include popup/salon_tv.yaml
             template:
               - base
               - icon_tv
@@ -148,7 +148,7 @@ views:
             entity: switch.deltaco_sh_p01_socket
             name: Balkong
             double_tap_action:
-              !include popup/vardagsrum_balkong.yaml
+              !include popup/salon_balkong.yaml
             template:
               - base
               - icon_hue
@@ -169,21 +169,21 @@ views:
 
           - type: custom:button-card
             entity: light.studio_dator
-            name: Datorlampa
+            name: Lampe d'ordinateur
             template:
               - light
               - icon_hue
 
           - type: custom:button-card
             entity: light.studio_group
-            name: Taklampor
+            name: Plafonniers
             template:
               - light
               - icon_spot
 
           - type: custom:button-card
             entity: switch.imac
-            name: Dator
+            name: Ordinateur
             double_tap_action:
               !include popup/studio_dator.yaml
             template:
@@ -223,29 +223,29 @@ views:
 
       #################################################
       #                                               #
-      #                    SOVRUM                     #
+      #                    chambre                    #
       #                                               #
       #################################################
 
       - type: grid
-        title: Sovrum
+        title: chambre
         view_layout:
-          grid-area: sovrum
+          grid-area: chambre
         columns: 2
         cards:
 
           - type: custom:button-card
-            entity: light.sovrum_group
-            name: Sänglampor
+            entity: light.chambre_group
+            name: Lampes de chevet
             template:
               - light
               - icon_lamp
 
           - type: custom:button-card
             entity: climate.ac
-            name: Klimat
+            name: Climatisation
             double_tap_action:
-              !include popup/sovrum_klimat.yaml
+              !include popup/chambre_klimat.yaml
             template:
               - base
               - icon_climate
@@ -265,7 +265,7 @@ views:
             entity: switch.ps5_635_power
             name: Playstation
             double_tap_action:
-              !include popup/sovrum_playstation.yaml
+              !include popup/chambre_playstation.yaml
             template:
               - base
               - icon_ps5
@@ -275,7 +275,7 @@ views:
             entity: media_player.samsung
             name: "Tv\u00B2"
             double_tap_action:
-              !include popup/sovrum_tv2.yaml
+              !include popup/chambre_tv2.yaml
             template:
               - base
               - icon_tv
@@ -307,10 +307,10 @@ views:
                   - type: conditional
                     conditions:
                       - entity: select.conditional_media
-                        state_not: Vardagsrum
+                        state_not: salon
 
                       - entity: select.conditional_media
-                        state_not: Sovrum
+                        state_not: chambre
 
                       - entity: select.conditional_media
                         state_not: Spotify
@@ -320,7 +320,7 @@ views:
                     card:
                       type: custom:button-card
                       entity: sensor.plex_recently_added
-                      name: Senast tillagt
+                      name: Dernier ajouté
                       tap_action:
                         action: none
                       template:
@@ -330,10 +330,10 @@ views:
                   - type: conditional
                     conditions:
                       - entity: select.conditional_media
-                        state: Vardagsrum
+                        state: salon
                     card:
                       type: custom:button-card
-                      entity: media_player.vardagsrum
+                      entity: media_player.salon
                       triggers_update: sensor.youtube_watching
                       template:
                         - conditional_media
@@ -342,10 +342,10 @@ views:
                   - type: conditional
                     conditions:
                       - entity: select.conditional_media
-                        state: Sovrum
+                        state: chambre
                     card:
                       type: custom:button-card
-                      entity: media_player.sovrum
+                      entity: media_player.chambre
                       triggers_update: sensor.youtube_watching
                       template:
                         - conditional_media
@@ -378,17 +378,17 @@ views:
                 cards:
 
                   - type: custom:button-card
-                    entity: media_player.vardagsrum
+                    entity: media_player.salon
                     triggers_update: sensor.youtube_watching
-                    name: Vardagsrum
+                    name: salon
                     template:
                       - media
                       - icon_apple_tv
 
                   - type: custom:button-card
-                    entity: media_player.sovrum
+                    entity: media_player.chambre
                     triggers_update: sensor.youtube_watching
-                    name: Sovrum
+                    name: chambre
                     template:
                       - media
                       - icon_apple_tv
@@ -409,27 +409,27 @@ views:
 
       #################################################
       #                                               #
-      #                    ÖVRIGT                     #
+      #                    autre                     #
       #                                               #
       #################################################
 
       - type: grid
-        title: Övrigt
+        title: autre
         view_layout:
-          grid-area: övrigt
+          grid-area: autre
         columns: 2
         cards:
 
           - type: custom:button-card
             entity: light.badrum_group
-            name: Badrum
+            name: Salle de bains
             template:
               - light
               - icon_bathroom
 
           - type: custom:button-card
             entity: switch.gosund_fan_switch
-            name: "Fläkt\u00B2"
+            name: "Ventilateur\u00B2"
             double_tap_action:
               !include popup/studio_flakt.yaml
             template:
@@ -439,7 +439,7 @@ views:
 
           - type: custom:button-card
             entity: light.garderob_lampa
-            name: Garderob
+            name: Penderie
             template:
               - light
               - icon_closet
@@ -492,7 +492,7 @@ views:
 
           - type: custom:button-card
             entity: script.home_leave
-            name: Stäng allt
+            name: Tout fermer
             template:
               - base
               - icon_away

@@ -2,7 +2,7 @@ action: fire-dom-event
 browser_mod:
   service: browser_mod.popup
   data:
-    title: Vardagsrum Tv
+    title: Salon Tv
     content:
       type: vertical-stack
       cards:

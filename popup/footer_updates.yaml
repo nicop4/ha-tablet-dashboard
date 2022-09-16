@@ -2,7 +2,7 @@ action: fire-dom-event
 browser_mod:
   service: browser_mod.popup
   data:
-    title: Uppdateringar
+    title: Mises à jour
     content:
       type: custom:mod-card
       card_mod:
@@ -36,7 +36,7 @@ browser_mod:
 
           - type: custom:button-card
             entity: sensor.current_version
-            name: Uppdatera HASS
+            name: Mise à jour HASS
             variables:
               latest: sensor.docker_hub
               latest_beta: sensor.docker_hub_beta
@@ -47,7 +47,7 @@ browser_mod:
                 sequence:
                   - service: browser_mod.notification
                     data:
-                      message: Startar watchtower...
+                      message: Démarrage watchtower...
                   - service: switch.turn_on
                     data:
                       entity_id: switch.docker_watchtower
@@ -61,7 +61,7 @@ browser_mod:
 
           - type: custom:button-card
             entity: sensor.hacs
-            name: Öppna HACS
+            name: Ouvrir HACS
             template:
               - updates_hacs_icon_name
               - >
@@ -77,7 +77,7 @@ browser_mod:
 
           - type: custom:button-card
             entity: sensor.template_updates
-            name: Kontrollera
+            name: Vérifier
             tap_action:
               action: call-service
               service: browser_mod.sequence
@@ -85,7 +85,7 @@ browser_mod:
                 sequence:
                   - service: browser_mod.notification
                     data:
-                      message: Söker efter uppdateringar...
+                      message: Rôle de contre-vérification des mises à jour...
                   - service: homeassistant.update_entity
                     data:
                       entity_id:

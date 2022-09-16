@@ -11,9 +11,9 @@
         date: >
           <font color='#6a7377'><b>
           {% if strptime(states('sensor.date'), '%Y-%m-%d').day != None %}
-          {% set days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'] %}
-          {% set months = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
-          'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'] %}
+          {% set days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'] %}
+          {% set months = ['Jancier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+          'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'] %}
             {{ days[now().weekday()] }}<br>
             {{ strptime(states('sensor.date'), '%Y-%m-%d').day }} {{ months[now().month-1] }}
           {% endif %}
@@ -21,19 +21,19 @@
         greet: >
           <b>
           {% set time = now().hour %}
-          {% if time <= 1 %} God natt {{'\U0001F611'}}
-          {% elif time <= 3 %} God natt {{'\U0001F62A'}}
-          {% elif time <= 5 %} God natt {{'\U0001F634'}}
-          {% elif time <= 7 %} God morgon {{'\U0001F4A9'}}
-          {% elif time <= 9 %} God morgon {{'\u2615\uFE0F'}}
-          {% elif time <= 10 %} God morgon {{'\U0001F642'}}
-          {% elif time <= 13 %} God dag {{'\U0001F60A'}}
-          {% elif time <= 15 %} God dag {{'\U0001F60E'}}
-          {% elif time <= 17 %} God dag {{'\U0001F44B\U0001F3FB'}}
-          {% elif time <= 19 %} God kväll {{'\U0001F44B\U0001F3FB'}}
-          {% elif time <= 22 %} God kväll {{'\U0001F60C'}}
-          {% elif time <= 23 %} God kväll {{'\U0001F974'}}
-          {% else %} God kväll {{'\U0001F974'}}
+          {% if time <= 1 %} Bonne nuit {{'\U0001F611'}}
+          {% elif time <= 3 %} Bonne nuit {{'\U0001F62A'}}
+          {% elif time <= 5 %} Bonne nuit {{'\U0001F634'}}
+          {% elif time <= 7 %} Bonjour {{'\U0001F4A9'}}
+          {% elif time <= 9 %} Bonjour {{'\u2615\uFE0F'}}
+          {% elif time <= 10 %} Bonjour {{'\U0001F642'}}
+          {% elif time <= 13 %} Bonne journée {{'\U0001F60A'}}
+          {% elif time <= 15 %} Bonne journée {{'\U0001F60E'}}
+          {% elif time <= 17 %} Bonne journée {{'\U0001F44B\U0001F3FB'}}
+          {% elif time <= 19 %} Bonne soirée {{'\U0001F44B\U0001F3FB'}}
+          {% elif time <= 22 %} Bonne soirée {{'\U0001F60C'}}
+          {% elif time <= 23 %} Bonne nuit {{'\U0001F974'}}
+          {% else %} Bonne soirée {{'\U0001F974'}}
           {% endif %}
           </b>
         active: >
@@ -74,74 +74,75 @@
           {% set devices_name = devices_on | map(attribute='name') | join(', ') %}
 
           {% if (lights_on | length == 0) and (devices_on | length > 0) %}
-            {{ devices_name | regex_replace(',([^,]*)$',' och\\1') }} är på
+            {{ devices_name | regex_replace(',([^,]*)$',' et\\1') }} sont allumées
 
           {% elif (lights_on | length == 1) and (devices_on | length == 1) %}
-            {{ lights_name }} och {{devices_name }} är på
+            {{ lights_name }} et {{devices_name }} sont allumées
 
           {% elif (lights_on | length == 1) and (devices_on | length > 1) %}
-            {{ lights_name }}, {{ devices_name | regex_replace(',([^,]*)$',' och\\1') }} är på
+            {{ lights_name }}, {{ devices_name | regex_replace(',([^,]*)$',' et\\1') }} sont allumées
 
           {% elif (lights_on | length > 1) and (devices_on | length == 1) %}
-            {{ lights_on | length }} lampor och {{ devices_name }} är på
+            {{ lights_on | length }} Les lampes et {{ devices_name }} sont allumées
 
           {% elif (lights_on | length > 1) and (devices_on | length > 1) %}
-            {{ lights_on | length }} lampor, {{ devices_name | regex_replace(',([^,]*)$',' och\\1') }} är på
+            {{ lights_on | length }} Les lampes, {{ devices_name | regex_replace(',([^,]*)$',' et\\1') }} sont allumées
 
           {% elif (lights_on | length == 1) and (devices_on | length == 0) %}
-            {{ lights_name }} är på
+            {{ lights_name }} est allumé
 
           {% elif (lights_on | length > 1) and (devices_on | length == 0) %}
-            {{ lights_on | length }} lampor är på
+            {{ lights_on | length }} Les lumières sont allumées
 
           {% else %}
-            <font color='#6a7377'>Allt är avstängt</font>
+            <font color='#6a7377'>Tout est éteint</font>
           {% endif %}
           </b>
         mailbox: >
           {% set mailbox = states('sensor.mailbox') %}
           {% if mailbox | int(default=0) > 0 %}
-            {{ '\U0001F4EC' }} <font color='#6a7377'><b>Brevlåda ({{ mailbox }})</b></font>
+            {{ '\U0001F4EC' }} <font color='#6a7377'><b>Boites mail ({{ mailbox }})</b></font>
           {% endif %}
         vacuum: >
           {% set entity_id = 'vacuum.morty' %}
           {% if is_state(entity_id, 'cleaning') %}
-            <b>Morty dammsuger</b>
+            <b>Nettoyage en cours</b>
           {% elif is_state(entity_id, 'returning') %}
-            <b>Morty är färdig</b>
+            <b>Nettoyage terminé</b>
           {% endif %}
         weather: >
           {% set entity = 'weather.smhi_home' %}
           {% if not is_state(entity, 'unknown') %}
             {% set temp = state_attr(entity, 'temperature') | round %}
             {% set precip = state_attr(entity, 'forecast')[0]['precipitation'] | round %}
-              Känns som {{ temp }}° med {{ 'ingen risk för regn' if precip == 0
-              else precip | string + 'mm regn \u2614\uFE0F' }}
+              Il fait {{ temp }}° avec {{ 'aucun risque de pluie' if precip == 0
+              else precip | string + 'mm de pluie \u2614\uFE0F' }}
           {% else %}
-            Kan inte läsa in väder...
+            Météo indisponible...
           {% endif %}
         laundry: >
+          # mettre une alerte si la machine à laver / sèche linge n'a pas été vidé
           {% set start_time = state_attr('calendar.tvatta', 'start_time') %}
           {% if start_time != None %}
             {% set time = as_timestamp(start_time) | timestamp_custom('%H:%M') %}
             {% set hours = as_timestamp(start_time) | timestamp_custom('%H') | int(default=0) / 24 %}
             {% set count = (as_timestamp(start_time) - as_timestamp(now())) / 86400 - hours %}
             {% set day = strptime(start_time, '%Y-%m-%d %H:%M:%S').strftime('%A')
-            | replace('Monday', 'Måndag')
-            | replace('Tuesday', 'Tisdag')
-            | replace('Wednesday', 'Onsdag')
-            | replace('Thursday', 'Torsdag')
-            | replace('Friday', 'Fredag')
-            | replace('Saturday', 'Lördag')
-            | replace('Sunday', 'Söndag') %}
+            | replace('Monday', 'Lundi')
+            | replace('Tuesday', 'Mardi')
+            | replace('Wednesday', 'Mercredi')
+            | replace('Thursday', 'Jeudi')
+            | replace('Friday', 'Vendredi')
+            | replace('Saturday', 'Samedi')
+            | replace('Sunday', 'Dimanche') %}
             {% if count <= 0.0 %}
-              {{'\U0001F4A6'}} Tvätt idag {{ time }}
+              {{'\U0001F4A6'}} Lessive aujourd'hui {{ time }}
             {% elif count <= 1.0 %}
-              Tvätt imorgon klockan {{ time }}
+              Lessive demain à {{ time }}
             {% elif count <= 2.0 %}
-              Tvätt i övermorgon klockan {{ time }}
+              Lessive après-demain à {{ time }}
             {% else %}
-              Tvätt om {{ (count + hours) | round }} dagar på {{ day }} kl {{ time }}
+              Laver si  {{ (count + hours) | round }} jours le {{ day }} à {{ time }}
             {% endif %}
           {% endif %}
         battery: >
@@ -151,6 +152,6 @@
             | map(attribute = 'entity_id') | list %}
           {% for sensor in entities if states(sensor) != 'unknown' and states(sensor) !=
           'unavailable' and states(sensor) != 'None' and states(sensor) | int(default=0) <= 5 %}
-            {% if loop.first %} {{'\u26A0\uFE0F'}} Batteri {% else %}, {% endif %}
+            {% if loop.first %} {{'\u26A0\uFE0F'}} Batterie {% else %}, {% endif %}
             {{ state_attr(sensor, 'friendly_name') }} {{ states(sensor) }}%
           {% endfor %}

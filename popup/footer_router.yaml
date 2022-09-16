@@ -25,7 +25,7 @@ browser_mod:
               secondary_info: last-changed
 
             - entity: sensor.template_udm_cpu_temp
-              name: CPU Temperatur
+              name: Température CPU
 
             - type: custom:bar-card
               width: 55%
@@ -60,7 +60,7 @@ browser_mod:
             type: horizontal-stack
             cards:
               - type: custom:button-card
-                name: Nätverksenheter
+                name: Périphériques réseau
                 icon: mdi:devices
                 tap_action:
                   action: url
@@ -68,7 +68,7 @@ browser_mod:
                 template: icon_name
 
               - type: custom:button-card
-                name: System
+                name: Système
                 icon: mdi:cog
                 tap_action:
                   action: url

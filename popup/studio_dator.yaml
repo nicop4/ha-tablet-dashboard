@@ -105,7 +105,7 @@ browser_mod:
                   cards:
 
                     - type: custom:button-card
-                      name: Försätt i vila
+                      name: Mettre en veille
                       icon: mdi:power-sleep
                       tap_action:
                         action: call-service
@@ -113,7 +113,7 @@ browser_mod:
                       template: icon_name
 
                     - type: custom:button-card
-                      name: Starta om
+                      name: Redémarrer
                       icon: mdi:restart
                       tap_action:
                         action: call-service
@@ -156,7 +156,7 @@ browser_mod:
                   cards:
 
                     - type: custom:button-card
-                      name: Starta iMac
+                      name: Démarrer iMac
                       icon: mdi:power
                       tap_action:
                         action: call-service
